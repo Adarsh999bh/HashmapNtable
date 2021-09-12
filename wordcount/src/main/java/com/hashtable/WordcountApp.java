@@ -23,6 +23,17 @@ public class WordcountApp
         }
         br.close();
         String[] wordsArray=content.toLowerCase().split(" ");
+        HashTable<String,Integer> newHashTable= new HashTable<>();
+        for(int i=0;i<wordsArray.length;i++){
+            try{
+                newHashTable.put(wordsArray[i], 1);   
+            }
+            catch(ElementAlreadyExistsException eae){
+                Integer data=newHashTable.getData(wordsArray[i]);
+                data+=1;
+                newHashTable.updateData(wordsArray[i], data);
+            }
+        }
         
     }
 }

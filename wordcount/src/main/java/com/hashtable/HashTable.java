@@ -34,11 +34,11 @@ public class HashTable<K,D> {
         }
         return temp;
     }
-    public void checkIfKeyIsAssignedElseCreatenewNode(Node<K,D> temp,K key,D data){
+    public boolean checkIfKeyIsAssignedElseCreatenewNode(Node<K,D> temp,K key,D data){
         while(temp.chainingLink!=null){
             if(temp.key.equals(key)){
                 System.out.println("Key is already assigned");
-                return;
+                return true;
             }
             temp=temp.chainingLink;
         }
@@ -46,8 +46,9 @@ public class HashTable<K,D> {
         temp.chainingLink.data=data;
         temp.chainingLink.key=key;
         this.noOfElementsFilledHashtable+=1;
+        return false;
     }
-    public void put(K key,D data){
+    public void put(K key,D data) throws ElementAlreadyExistsException{
         if(key != null && data != null){
             Node<K,D> temp=getNode(findHashValue(key));
             if(temp.key==null){
@@ -56,8 +57,18 @@ public class HashTable<K,D> {
                 this.noOfElementsFilledHashtable+=1;
             }
             else{
-                checkIfKeyIsAssignedElseCreatenewNode(temp,key,data);
+                if(checkIfKeyIsAssignedElseCreatenewNode(temp,key,data)){
+                    throw new ElementAlreadyExistsException("Element already exists in hash table");
+                }
             }
         }
+    }
+    public D getData(K key){
+        Node<K,D> temp=getNode(findHashValue(key));
+        return temp.data;
+    }
+    public void updateData(K key,D data){
+        Node<K,D> temp=getNode(findHashValue(key));
+        temp.data=data;
     }
 }
