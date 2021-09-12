@@ -61,7 +61,7 @@ public class WordcountApp
                     System.out.println(knf.getMessage());
                 }
                 data+=1;
-                
+
                 /**
                  * keynotfound exception handeled on updating node
                  */
@@ -75,6 +75,7 @@ public class WordcountApp
 
         //displaying contents in the hashtable
         newHashTable.display();
+        System.out.println(newHashTable.noOfElementsFilledHashtable);
         
     }
 }

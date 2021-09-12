@@ -32,7 +32,7 @@ public class HashTable<K,D> {
     private Node<K,D> getLinkedListOfElevenNodes(){
         Node<K,D> tail=new Node<>();
         head.nextBlockLink=tail;
-        for(int i=0;i<this.sizeOfHashTable-2;i++){
+        for(int i=0;i<this.sizeOfHashTable-1;i++){
             tail.nextBlockLink=new Node<>();
             tail=tail.nextBlockLink;
         }
@@ -82,7 +82,6 @@ public class HashTable<K,D> {
         Node<K,D> rev=new Node<>();;
         while(temp!=null){
             if(temp.key.equals(key)){
-                System.out.println("Key is already assigned");
                 return true;
             }
             rev=temp;
@@ -151,7 +150,7 @@ public class HashTable<K,D> {
             }
             temp=temp.chainingLink;
         }
-        throw new KeyNotFoundException("Key not present in the hashTable")
+        throw new KeyNotFoundException("Key not present in the hashTable");
     }
 
     /**
