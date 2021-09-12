@@ -34,6 +34,8 @@ public class WordcountApp
                 newHashTable.updateData(wordsArray[i], data);
             }
         }
+
+        newHashTable.display();
         
     }
 }

@@ -3,13 +3,13 @@ package com.hashtable;
 public class HashTable<K,D> {
     Node<K,D> startingNode,endingNode;
     int sizeOfHashTable,noOfElementsFilledHashtable;
+    Node<K,D> head=new Node<>();
     public HashTable(){
         this.noOfElementsFilledHashtable=0;
         this.sizeOfHashTable=11;
         this.startingNode=getLinkedListOfElevenNodes();
     }
     private Node<K,D> getLinkedListOfElevenNodes(){
-        Node<K,D> head=new Node<>();
         Node<K,D> tail=new Node<>();
         head.nextBlockLink=tail;
         for(int i=0;i<this.sizeOfHashTable-2;i++){
@@ -70,5 +70,19 @@ public class HashTable<K,D> {
     public void updateData(K key,D data){
         Node<K,D> temp=getNode(findHashValue(key));
         temp.data=data;
+    }
+    public void display(){
+        Node<K,D> temp=this.startingNode;
+        while(temp!=null){
+            System.out.print(""+temp.key+" : "+temp.data);
+            Node<K,D> tempChain=temp.chainingLink;
+            while(tempChain!=null){
+                System.out.print(" --> "+tempChain.key+" : "+tempChain.data);
+                tempChain=tempChain.chainingLink;
+            }
+            System.out.print(" --> null\n\t|");
+            temp=temp.nextBlockLink;
+        }
+        System.out.println("null");
     }
 }
